@@ -52,9 +52,14 @@ textarea {
   outline: none;
 }
 
-:focus-visible {
-  outline: 3px solid rgba(79, 70, 229, 0.45);
-  outline-offset: 2px;
+:focus-visible,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .app-container {

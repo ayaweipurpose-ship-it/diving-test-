@@ -31,6 +31,25 @@ const App = () => {
     }
   }, [state.timeLeft]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (state.submitted) return;
+
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+        event.preventDefault();
+        dispatch({ type: "NEXT" });
+      }
+
+      if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+        event.preventDefault();
+        dispatch({ type: "PREV" });
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [state.submitted]);
+
   const q = questions[state.currentQuestion];
 
   const handleAnswer = (index) => {
